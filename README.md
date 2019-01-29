@@ -23,7 +23,7 @@ In order to complete the assignment, you will need:
 ## Case description
 
 Our company develops the following application (disclaimer, this is a public demo project not developed by Chama):
-[Here's the code](https://github.com/Azure-Samples/service-fabric-dotnet-web-reference-app)
+[Here's the code](https://github.com/chamatheapp/service-fabric-dotnet-web-reference-app)
 
 The application consists of a public web microservice and 4 internal microservices running in Service Fabric:
 
@@ -38,6 +38,18 @@ _The customer order and inventory management system tracks user orders, removes 
 
 ## Part 1: Code set up
 Download the code and upload it into a private repository on github owned by you. Invite user **chamareview** with Write permissions to the repository.
+
+_Tips to run the code locally_
+* Have Visual Studio and Service Fabric SDK installed
+* Open the solution in Visual Studio
+* Build the solution and restore the bower dependencies from Web.Service/Dependencies (righ-click and click on Restore Bower Packages)
+* Run WebReferenceApplication
+* Navigate to [the admin portal](http://localhost:8081/fabrikam/admin)
+ * add inventory by copying and pasting the sample inventory in the textbox and click on _Create inventory_
+* Navigate to [web store](http://localhost:8081/fabrikam)
+ * add items to the shopping cart
+ * place an order
+ * click repeatedly to _Get order status_ to view how the status progresses
 
 ## Part 2: Environment set up
 In order to run the application in Azure, set up a new Cluster with all the required resources.
