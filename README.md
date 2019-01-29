@@ -1,6 +1,6 @@
 # Assignment: Service Fabric CI/CD Assignment
 
-The assignment is intentionally big and open so you can implement as much as you want to demonstrate your skills. Read the whole assignment first and decide upfront which parts you want to implement and which you want to simply explain. Don't attempt to complete everything from start to finish as it could result in some steps fully completed and others fully left undone. It is better if you partially cover most parts.
+The assignment is intentionally big and open so you can implement as much as you want to demonstrate your skills. Read the whole assignment first and decide upfront which parts you want to implement and which you want to simply explain. **Don't attempt to complete everything from start to finish as it could result in some steps fully completed and others fully left undone. It is better if you partially cover most parts.**
 
 We would like you to  demonstrate the parts you did finish and present potential solutions and approaches for the parts that you didn't do. Please prepare a 15-20 minutes presentation, explaining what you did and especially how you would take it further to completion: we want you to not only demonstrate how you implement your solutions, but also how you communicate them. The rest of the time (40-45 minutes) we will talk about the assignment, how you did it and what are other ways of approaching the problem.
 
@@ -54,7 +54,7 @@ _Questions:_
 2. What kind of notifications would you generate?
 3. What is a good strategy to trigger automatic builds for feature, release and hotfix branches, in your opinion?
 
-## Part 3: Continuous Delivery
+## Part 4: Continuous Delivery
 Create a release pipeline (ideally in Azure DevOps) that allows to deploy to the Azure environment the buils created in the previous point.
 
 Options:
@@ -66,7 +66,7 @@ _Questions:_
 2. What kind of reporting would you generate for this pipeline?
 3. What kind of notifications would you generate?
 
-## Part 4: Production Operations
+## Part 5: Production Operations
 Trigger an alert whenever CPU exceeds a %.
 Configure autoscaling so that when the average CPU exceeds a % the cluster increases its capacity.
 
@@ -76,7 +76,7 @@ _Questions:_
 3. What kind of dashboard would you create?
 4. What metrics and strategies would you use to control the system capacity/scaling?
 
-## Part 5: Decomposition/Composition
+## Part 6: Decomposition/Composition
 Assume the code base becomes very big to manage in a single repository. 
 Split the code in 2 or more repositories based on the strategy you decide.
 Create the required strategies in order to be able to compose the full system again (hint: this could be achieved in many ways, depending on how you splitted the code, for example, some code could be published as nuget packages and other parts could be deployed directly in production). 
@@ -84,11 +84,9 @@ Create the required strategies in order to be able to compose the full system ag
 ## Wrapping up
 Prepare few slides for your presentation (pdf, ppt, keynote, google slides link) and send it at least 24 hours before the interview.
 
-Required:
-- Explain your solutions and decisions
+Explain:
+- Your solutions and decisions
 - List the tools and technologies you used
-- Why did you decide to use X and not Y
-
-Bonus:
+- Why you decided to use X and not Y
 - The problems and challenges that you have faced
 - What you think that it can be improved and how
