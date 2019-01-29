@@ -14,7 +14,11 @@ We will evaluate your skills in the following areas:
 - Monitoring/alerting
 - Operations
 
-In order to complete the assignment, you will need an Azure Subscription. You can get a [free account and some free credit here](https://azure.microsoft.com/en-gb/free/)
+You will need:
+In order to complete the assignment, you will need:
+* an Azure Subscription. You can get a [free account and some free credit here](https://azure.microsoft.com/en-gb/free/)
+* Visual Studio
+* Service Fabric SDK
 
 ## Case description
 
