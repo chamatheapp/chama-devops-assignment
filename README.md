@@ -1,82 +1,93 @@
-# Assignment: Course Sign-up System
+# Assignment: Service Fabric CI/CD Assignment
 
-Below assignment consists of 3 parts. 
+The assignment is intentionally big and open so you can implement as much as you want to demonstrate your skills. Read the whole assignment first and decide upfront which parts you want to implement and which you want to simply explain. Don't attempt to complete everything from start to finish as it could result in some steps fully completed and others fully left undone. It is better if you partially cover most parts.
 
-The assignment is intentionally made too big, we suggest you spend a maximum of 5 hours on it. We would like you to demonstrate the parts you did finish, preferably on your own laptop so you can debug live if necessary. Please prepare a 15-20 minute of presentation, explaining what you did and especially how you would take it further to completion: we want you to not only demonstrate how you code, but also how you transfer knowledge. The rest of the time (40-45 minutes) we will talk about the assignment, how you did it and what are other ways of approaching the problem.
+We would like you to  demonstrate the parts you did finish and present potential solutions and approaches for the parts that you didn't do. Please prepare a 15-20 minutes presentation, explaining what you did and especially how you would take it further to completion: we want you to not only demonstrate how you implement your solutions, but also how you communicate them. The rest of the time (40-45 minutes) we will talk about the assignment, how you did it and what are other ways of approaching the problem.
 
 We will evaluate your skills in the following areas:
-- Dependency injection
-- Writing testable code
-- Writing and organizing tests
-- Exception handling and logging
-- Asynchronous code (async/await)
-- Asynchrony through messaging (events, commands)
-- Web API
-- Knowledge of Azure infrastructure and storage technologies (WebJobs, Azure Functions, SQL, Table Storage, Cosmos DB, ...)
-- Namings
-- Code organisation (modularity, dependencies between modules etc)
-- Domain model design (OOP, DDD concepts etc)
-- Handling concurrency and scaling out your solution
+- Understanding of the problem
+- Azure knowledge
+- Azure DevOps knowledge
+- Service Fabric knowledge (if you don't have previous SF knowledge we'll evaluate how quickly you can understand it and produce a working solution)
+- CI knowledge
+- CD knowledge
+- Monitoring/alerting
+- Operations
 
-Please upload the code of the assignment and the presentation at least 24 hours before you present it. You may upload your solution to a github repository, but please don't fork from this assignment repository, as other candidates will then see it. Please do not publish the solution to this assignment in any other way.
+In order to complete the assignment, you will need an Azure Subscription. You can get a [free account and some free credit here](https://azure.microsoft.com/en-gb/free/)
 
 ## Case description
 
-You start working at a company that offers online courses.
+Our company develops the following application (disclaimer, this is a public demo project not developed by Chama):
+[Here's the code](https://github.com/Azure-Samples/service-fabric-dotnet-web-reference-app)
 
-For each of the courses, there is one teacher/lecturer, and for each of the courses
-there is a maximum number of students that can participate. 
+The application consists of a public web microservice and 4 internal microservices running in Service Fabric:
 
-To sign up, students need to supply their name and their age.
+_The context of this sample is a web-based store with a customer order and inventory management back-end. Logical parts of the management back-end are represented by individual services, allowing loose coupling of functionality and independently-upgradeable components:_
 
-## Part 1: API for signing up
+* Customer Order Service
+* Inventory Service
+* Restocking Service
+* Web front-end Service
 
-Create an API endpoint with which students can sign up for a course. 
+_The customer order and inventory management system tracks user orders, removes items from the inventory to fulfill orders, and requests restocking of inventory items when an item's stock goes below a certain threshold. If a user requests items that are out of stock, the order is placed on back-order until the inventory is replenished, at which point the order is completed._
 
-If a course is full, it should not be possible to sign up any more.
+## Part 1: Code set up
+Fork the repository so that you can make changes
 
-The endpoint's response should indicate whether signing up was successful.
+## Part 2: Environment set up
+In order to run the application in Azure, set up a new Cluster with all the required resources.
 
-## Part 2: Scaling out
+_Questions:_
+1. How could you automate the creation of all environment resources to allow to easily create new environments for development and testing?
+2. What could you parametrize to give the environment creation automation more flexibility?
 
-After few months, the company's courses grow wildly successfull, business is 
-booming. There are many courses and millions of sign ups, and your synchronous 
-in-process API which you have created in the Part 1 cannot handle the load any more.
+## Part 3: Continuous Integration
+Create a build pipeline (ideally in Azure DevOps) that builds the code from the repository you created with the fork.
 
-Create a new endpoint for your API that defers the actual processing to a 
-worker process: signing up is processed asynchronously via a message bus.
+Options:
+* Trigger the builds automatically after each commit on master and potentially any other branch.
+* Run unit tests for every build
 
-This works as follows. The API puts a command message on a queue, and the 
-message is picked up by the worker process. The worker process tries to sign 
-up the student; it then sends an e-mail to inform the student whether signing 
-up succeeded.
+_Questions:_
+1. What kind of reporting would you generate for this pipeline?
+2. What kind of notifications would you generate?
+3. What is a good strategy to trigger automatic builds for feature, release and hotfix branches, in your opinion?
 
-You can implement "sending an email" with a mock implementation that logs 
-success or failure. 
+## Part 3: Continuous Delivery
+Create a release pipeline (ideally in Azure DevOps) that allows to deploy to the Azure environment the buils created in the previous point.
 
-## Part 3: Querying
+Options:
+* Create the release automatically after a build in master is successfully finished
+* Deploy the release automatically after the master build
 
-For analysis purposes, the company needs to know per course the minimum age, the
-maximum age and the average age of students that signed up for the courses.
-Consider that this needs to keep working efficiently when there are millions 
-of sign-ups per day: calculating this information at every request is unfeasable.
+_Questions:_
+1. If the company has 4 teams, describe a proposed environment and release pipeline that allows them to test and release to production the software they produce. Note that we don't specify if each team works on a single service or they work on the whole solution, which might impact your proposed set up. Feel free to define a workflow that you thing works correctly.
+2. What kind of reporting would you generate for this pipeline?
+3. What kind of notifications would you generate?
 
-Create two API endpoints:
-- GET list: which returns a list with the above information for each course, plus
-the course total capacity and current number of students
-- GET details: which returns the above information for a single course, plus
-the teacher and the list of registered students
+## Part 4: Production Operations
+Trigger an alert whenever CPU exceeds a %.
+Configure autoscaling so that when the average CPU exceeds a % the cluster increases its capacity.
+
+_Questions:_
+1. What kind of monitoring would you create for a system like this?
+2. What kind of alerts would you create?
+3. What kind of dashboard would you create?
+4. What metrics and strategies would you use to control the system capacity/scaling?
+
+## Part 5: Decomposition/Composition
+Assume the code base becomes very big to manage in a single repository. 
+Split the code in 2 or more repositories based on the strategy you decide.
+Create the required strategies in order to be able to compose the full system again (hint: this could be achieved in many ways, depending on how you splitted the code, for example, some code could be published as nuget packages and other parts could be deployed directly in production). 
 
 ## Wrapping up
-Prepare few slides for your presentation.
-
-Please attach the presentation file (pdf, ppt, keynote, google slides link) inside your project/repository test.
+Prepare few slides for your presentation (pdf, ppt, keynote, google slides link) and send it at least 24 hours before the interview.
 
 Required:
-- Explore your architecture decision
-- What tools and technologies you used (libraries, framework, tools etc)
-- Why did you decide to use technology X and not Y
-- How you solve each step (API, Scaling out and Querying)
+- Explain your solutions and decisions
+- List the tools and technologies you used
+- Why did you decide to use X and not Y
 
 Bonus:
 - The problems and challenges that you have faced
