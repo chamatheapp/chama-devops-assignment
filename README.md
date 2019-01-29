@@ -33,7 +33,7 @@ _The context of this sample is a web-based store with a customer order and inven
 _The customer order and inventory management system tracks user orders, removes items from the inventory to fulfill orders, and requests restocking of inventory items when an item's stock goes below a certain threshold. If a user requests items that are out of stock, the order is placed on back-order until the inventory is replenished, at which point the order is completed._
 
 ## Part 1: Code set up
-Fork the repository so that you can make changes
+Download the code and upload it into a private repository on github owned by you. Invite user **chamareview** with Write permissions to the repository.
 
 ## Part 2: Environment set up
 In order to run the application in Azure, set up a new Cluster with all the required resources.
