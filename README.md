@@ -106,3 +106,6 @@ Explain:
 - Why you decided to use X and not Y
 - The problems and challenges that you have faced
 - What you think that it can be improved and how
+
+## Fallback Option
+If you don't know Service Fabric, you can't get the sample project to work, or you simply believe that you can better demonstrate your knowledge using other code and tools than the ones described in this assignment, feel free to use a different sample application and/or tools, while making sure that your solution correlates with what we are asking in the assignment.
