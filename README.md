@@ -36,7 +36,7 @@ _Tips to run the code locally_
 * Restore Packages
 * Build the solution
 * Run the Service Fabric application (F5)
-* Navigate to [the web application](http://localhost:8081/)
+* Navigate to [the web application] (http://localhost:8081/)
 * Check that the application is working
 
 ## Part 2: Environment set up
@@ -49,9 +49,12 @@ _Questions:_
 ## Part 3: Continuous Integration
 Create a build pipeline (ideally in Azure DevOps) that builds the code from the repository you created with the fork.
 
+
 Options:
+* Create the pipeline in yaml. (Demonstrate Pipelines as Code)
 * Trigger the builds automatically after each commit on master and potentially any other branch.
 * Run unit tests for every build
+
 
 _Questions:_
 1. What kind of reporting would you generate for this pipeline?
