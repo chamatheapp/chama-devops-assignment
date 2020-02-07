@@ -2,7 +2,7 @@
 
 The assignment is intentionally big and open so you can implement as much as you want to demonstrate your skills. Read the whole assignment first and decide upfront which parts you want to implement and which you want to simply explain. **Don't attempt to complete everything from start to finish as it could result in some steps fully completed and others fully left undone. It is better if you partially cover most parts.**
 
-We would like you to  demonstrate the parts you did finish and present potential solutions and approaches for the parts that you didn't do. Please prepare a 15-20 minutes presentation, explaining what you did and especially how you would take it further to completion: we want you to not only demonstrate how you implement your solutions, but also how you communicate them. The rest of the time (40-45 minutes) we will talk about the assignment, how you did it and what are other ways of approaching the problem.
+We would like you to  demonstrate the parts you did finish and present potential solutions and approaches for the parts that you didn't do. Please prepare a 15 minutes presentation, explaining what you did and especially how you would take it further to completion: we want you to not only demonstrate how you implement your solutions, but also how you communicate them. The rest of the time (40-45 minutes) we will talk about the assignment, how you did it and what are other ways of approaching the problem.
 
 We will evaluate your skills in the following areas:
 - Understanding of the problem
@@ -20,21 +20,12 @@ In order to complete the assignment, you will need:
 * Visual Studio
 * Service Fabric SDK
 
+## Fallback Option
+If you don't know Service Fabric, you can't get the sample project to work, or you simply believe that you can better demonstrate your knowledge using other code and tools than the ones described in this assignment, feel free to use a different sample application and/or tools, while making sure that your solution correlates with what we are asking in the assignment.
+
 ## Case description
 
-Our company develops the following application (disclaimer, this is a public demo project not developed by Chama):
-[Here's the code](https://github.com/chamatheapp/service-fabric-dotnet-web-reference-app)
-
-The application consists of a public web microservice and 4 internal microservices running in Service Fabric:
-
-_The context of this sample is a web-based store with a customer order and inventory management back-end. Logical parts of the management back-end are represented by individual services, allowing loose coupling of functionality and independently-upgradeable components:_
-
-* Customer Order Service
-* Inventory Service
-* Restocking Service
-* Web front-end Service
-
-_The customer order and inventory management system tracks user orders, removes items from the inventory to fulfill orders, and requests restocking of inventory items when an item's stock goes below a certain threshold. If a user requests items that are out of stock, the order is placed on back-order until the inventory is replenished, at which point the order is completed._
+To complete the assignment you need a working Service Fabric application. You can use the following one (disclaimer, this is a public demo project not developed by Chama): [Here's the code](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 
 ## Part 1: Code set up
 Download the code and upload it into a private repository on github owned by you. Invite user **chamareview** with Write permissions to the repository.
@@ -42,14 +33,11 @@ Download the code and upload it into a private repository on github owned by you
 _Tips to run the code locally_
 * Have Visual Studio and Service Fabric SDK installed
 * Open the solution in Visual Studio
-* Build the solution and restore the bower dependencies from Web.Service/Dependencies (righ-click and click on Restore Bower Packages)
-* Run WebReferenceApplication
-* Navigate to [the admin portal](http://localhost:8081/fabrikam/admin)
- * add inventory by copying and pasting the sample inventory in the textbox and click on _Create inventory_
-* Navigate to [web store](http://localhost:8081/fabrikam)
- * add items to the shopping cart
- * place an order
- * click repeatedly to _Get order status_ to view how the status progresses
+* Restore Packages
+* Build the solution
+* Run the Service Fabric application (F5)
+* Navigate to [the web application](http://localhost:8081/)
+* Check that the application is working
 
 ## Part 2: Environment set up
 In order to run the application in Azure, set up a new Cluster with all the required resources.
@@ -107,5 +95,3 @@ Explain:
 - The problems and challenges that you have faced
 - What you think that it can be improved and how
 
-## Fallback Option
-If you don't know Service Fabric, you can't get the sample project to work, or you simply believe that you can better demonstrate your knowledge using other code and tools than the ones described in this assignment, feel free to use a different sample application and/or tools, while making sure that your solution correlates with what we are asking in the assignment.
