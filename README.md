@@ -69,7 +69,7 @@ Options:
 * Deploy the release automatically after the master build
 
 _Questions:_
-1. If the company has 4 teams, describe a proposed environment and release pipeline that allows them to test and release to production the software they produce. Note that we don't specify if each team works on a single service or they work on the whole solution, which might impact your proposed set up. Feel free to define a workflow that you thing works correctly.
+1. If the company has 4 teams, describe a proposed environment and release pipeline that allows them to test and release to production the software they produce. Note that we don't specify if each team works on a single service or they work on the whole solution, which might impact your proposed set up. Feel free to define a workflow that you think works correctly.
 2. What kind of reporting would you generate for this pipeline?
 3. What kind of notifications would you generate?
 
